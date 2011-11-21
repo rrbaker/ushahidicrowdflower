@@ -1,0 +1,19 @@
+.settings_holder .row {
+	margin-bottom: 2em;
+	}
+.settings_holder .row input {
+	float: none;
+	padding: 8px;
+	font-size: 28px;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: lighter;
+	border-color: #666;
+	}
+.settings_holder .row input#crowdflower_apikey { width: 600px; }
+.settings_holder .row input#crowdflower_jobid { width: 100px; }
+.settings_holder .row label {
+	display: block;
+	float: none;
+	padding-top: 5px;
+	font-weight: bold;
+	}
