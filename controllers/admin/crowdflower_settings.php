@@ -15,8 +15,9 @@
 */
 
 class Crowdflower_Settings_Controller extends Admin_Controller {
-	public function index() {
-		$this->template->this_page = 'settings';
+	public function index() 
+	{
+		$this->template->this_page = 'addons';
 		
 		// Standard Settings View
 		$this->template->content = new View("admin/plugins_settings");
