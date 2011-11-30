@@ -71,6 +71,7 @@ class S_Crowdflower_Controller extends Controller {
 			$incident->location_id = $location->id;
 			$incident->incident_title = date("Y-m-d H:i:s",time());
 			$incident->incident_description = $report->{'sms_text'};
+			$incident->incident_date = date("Y-m-d H:i:s",time());
 			$incident->incident_dateadd = date("Y-m-d H:i:s",time());
 			$incident->incident_active = 1;
 			$incident->incident_verified = 1;
