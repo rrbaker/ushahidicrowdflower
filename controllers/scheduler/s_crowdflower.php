@@ -53,24 +53,24 @@ class S_Crowdflower_Controller extends Controller {
 	private function add_reports($data)
 	{
 		$reports = json_decode($data, false);
-		var_dump ($reports);
-		$report_results = $reports->{'data'};
+		//var_dump ($reports);
+		//$report_results = $reports;
 
 
-		foreach($report_results as $report)
+		foreach($reports as $report)
 		{
 			//Save the Report location
 			$location = new Location_Model();
-			$location->longitude = $report{'longitude'};
-			$location->latitude = $report{'latitude'};
-			$location->location_name = $report{'location_city'};
+			$location->longitude = $report->{'longitude'};
+			$location->latitude = $report->{'latitude'};
+			$location->location_name = $report->{'location_city'};
 			$location->save();
 
 			// Save CF result as Report
 			$incident = new Incident_Model();
 			$incident->location_id = $location->id;
 			$incident->incident_title = date("Y-m-d H:i:s",time());
-			$incident->incident_description = $report{'sms_text'};
+			$incident->incident_description = $report->{'sms_text'};
 			$incident->incident_dateadd = date("Y-m-d H:i:s",time());
 			$incident->incident_active = 1;
 			$incident->incident_verified = 1;
@@ -78,13 +78,13 @@ class S_Crowdflower_Controller extends Controller {
 
 			// Save Incident Category
 			$report_category_id = ORM::factory("category")
-				->where("category_title", $report{'categories'})
+				->where("category_title", $report->{'categories'})
 				->find();
-				if ($category_id->loaded)
+				if ($report_category_id->loaded)
 				{
 					$incident_category = new Incident_Category_Model();
 					$incident_category->incident_id = $incident->id;
-					$incident_category->category_id = $report_category->id;
+					$incident_category->category_id = $report_category_id->id;
 					$incident_category->save();
 				}
 			}
