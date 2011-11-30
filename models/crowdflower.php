@@ -13,7 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 
-class CrowdFlower_Model extends ORM
+class Crowdflower_Model extends ORM
 {
 	// Database table name
 	protected $table_name = 'crowdflower';

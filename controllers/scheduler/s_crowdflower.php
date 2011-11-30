@@ -18,7 +18,7 @@ class S_Crowdflower_Controller extends Controller {
 	private $crowdflower_jobid;
 	
 	public function __construct() {
-		$settings = ORM::factory("crowdflower_settings")->find(1);
+		$settings = ORM::factory("crowdflower")->find(1);
 		if ($settings->loaded) {
 			$this->crowdflower_apikey = $settings->crowdflower_apikey;
 			$this->crowdflower_jobid = $settings->crowdflower_jobid;
@@ -31,7 +31,7 @@ class S_Crowdflower_Controller extends Controller {
 		$have_results = TRUE;
 		while($have_results == TRUE AND $page <=2)
 		{
-			$url = "https://api.crowdflower.com/v1/jobs/$crowdflower_jobid.json?key=$crowdflower_apikey";
+			$url = "https://api.crowdflower.com/v1/jobs/{$this->crowdflower_jobid}/units.json?key={$this->crowdflower_apikey}";
 
 			$curl_handle = curl_init();
 			curl_setopt($curl_handle,CURLOPT_URL,$url);
@@ -53,8 +53,9 @@ class S_Crowdflower_Controller extends Controller {
 	private function add_reports($data)
 	{
 		$reports = json_decode($data, false);
-
+		var_dump ($reports);
 		$report_results = $reports->{'data'};
+
 
 		foreach($report_results as $report)
 		{
@@ -86,9 +87,8 @@ class S_Crowdflower_Controller extends Controller {
 					$incident_category->category_id = $report_category->id;
 					$incident_category->save();
 				}
-		 }
-	
-	 }
+			}
+		}
 
 
 }
