@@ -20,8 +20,10 @@ Receive reports from CrowdFlower via the API
 1.0 (Initial release)
 - Import reports from CF
 - Set API and Job ID within admin settings
-- Report arrive pre-approved
+- Pull reports via the scheduler with at least three judgements
+- Report arrive pre-approved, pre-verified
 
 == Development Roadmap ==
 - Toggle for reports coming into Ushahidi as Approved or Unapproved
-- Toggle to receive all reports or just gold reports (default gold)
+- Toggle for reports coming into Ushahidi as Verified or Unverified
+- Ability to select number of judgements units should have before they are received

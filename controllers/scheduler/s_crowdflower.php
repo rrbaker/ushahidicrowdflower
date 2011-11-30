@@ -31,7 +31,7 @@ class S_Crowdflower_Controller extends Controller {
 		$have_results = TRUE;
 		while($have_results == TRUE AND $page <=2)
 		{
-			$url = "https://api.crowdflower.com/v1/jobs/$crowdflower_jobid/units/data.json?key=$crowdflower_apikey";
+			$url = "https://api.crowdflower.com/v1/jobs/$crowdflower_jobid.json?key=$crowdflower_apikey";
 
 			$curl_handle = curl_init();
 			curl_setopt($curl_handle,CURLOPT_URL,$url);
@@ -68,10 +68,10 @@ class S_Crowdflower_Controller extends Controller {
 			// Save CF result as Report
 			$incident = new Incident_Model();
 			$incident->location_id = $location->id;
-			$incident->incident_title = "Aljazeera Project";
+			$incident->incident_title = date("Y-m-d H:i:s",time());
 			$incident->incident_description = $report{'sms_text'};
 			$incident->incident_dateadd = date("Y-m-d H:i:s",time());
-			$incident->incident_active = 1	;
+			$incident->incident_active = 1;
 			$incident->incident_verified = 1;
 			$incident->save();
 
