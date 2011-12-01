@@ -53,9 +53,6 @@ class S_Crowdflower_Controller extends Controller {
 	private function add_reports($data)
 	{
 		$reports = json_decode($data, false);
-		//var_dump ($reports);
-		//$report_results = $reports;
-
 
 		foreach($reports as $report)
 		{
@@ -78,18 +75,22 @@ class S_Crowdflower_Controller extends Controller {
 			$incident->save();
 
 			// Save Incident Category
-			$report_category_id = ORM::factory("category")
-				->where("category_title", $report->{'categories'})
-				->find();
-				if ($report_category_id->loaded)
-				{
-					$incident_category = new Incident_Category_Model();
-					$incident_category->incident_id = $incident->id;
-					$incident_category->category_id = $report_category_id->id;
-					$incident_category->save();
-				}
+			$categories = explode(",",$report->{'categories'});
+			foreach($categories as $category)
+			{
+				$report_category_id = ORM::factory("category")
+					->where("category_title", $category)
+					->find();
+					if ($report_category_id->loaded)
+					{
+						$incident_category = new Incident_Category_Model();
+						$incident_category->incident_id = $incident->id;
+						$incident_category->category_id = $report_category_id->id;
+						$incident_category->save();
+					}
 			}
 		}
 
+	}
 
 }
