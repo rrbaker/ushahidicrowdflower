@@ -12,7 +12,7 @@ author website: http://www.rrbaker.com
 Receive reports from CrowdFlower via the API
 
 == Installation ==
-1. Copy the entire /crowdflower/ directory into your /plugins/ directory.
+1. Copy the entire /ushahidicrowdflower/ directory into your /plugins/ directory. Please note that naming this plugin something else will results in installation errors.
 2. Activate the plugin.
 3. Access the plugin settings and enter your CrowdFlower API key and Job number.  While activated, the plugin will pull results via JSON from your CrowdFlower account marked as Gold.
 

@@ -66,6 +66,7 @@ class S_Crowdflower_Controller extends Controller {
 			// Save CF result as Report
 			$incident = new Incident_Model();
 			$incident->location_id = $location->id;
+			// $incident->id = $report->{'id'};
 			$incident->incident_title = date("Y-m-d H:i:s",time());
 			$incident->incident_description = $report->{'sms_text'};
 			$incident->incident_date = date("Y-m-d H:i:s",time());
